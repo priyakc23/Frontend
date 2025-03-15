@@ -1,0 +1,52 @@
+<!-- src/app/components/admin-pizza-dashboard/admin-pizza-dashboard.component.html -->
+<div class="container mt-4">
+  <h2 class="text-center">Admin Pizza Dashboard</h2>
+  
+  <!-- Add Pizza Form -->
+  <form [formGroup]="pizzaForm" (ngSubmit)="addPizza()" class="card p-4 shadow">
+    <!-- Form fields (same as before) -->
+  </form>
+  
+  <!-- Pizza List with Filters and Search Bar -->
+  <div class="mt-5">
+    <h4>Pizza List</h4>
+    <div class="d-flex mb-3">
+      <!-- Search Bar -->
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (input)="applyFilters()"
+        class="form-control w-25 me-2"
+        placeholder="Search by name"
+      />
+      <!-- Category Filter -->
+      <select [(ngModel)]="filterCategory" class="form-control w-25 me-2" (change)="applyFilters()">
+        <option value="">All Categories</option>
+        <option value="Veg">Veg</option>
+        <option value="NonVeg">Non-Veg</option>
+      </select>
+      <!-- Size Filter -->
+      <select [(ngModel)]="filterSize" class="form-control w-25" (change)="applyFilters()">
+        <option value="">All Sizes</option>
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+      </select>
+    </div>
+    
+    <!-- Pizza List -->
+    <div class="row">
+      <div class="col-md-4" *ngFor="let pizza of filteredPizzas">
+        <div class="card shadow-sm">
+          <img [src]="pizza.imageUrl" class="card-img-top" alt="{{ pizza.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ pizza.name }}</h5>
+            <p class="card-text">{{ pizza.category }} | {{ pizza.size }}</p>
+            <p class="fw-bold">₹{{ pizza.price }}</p>
+            <button class="btn btn-danger" (click)="deletePizza(pizza.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

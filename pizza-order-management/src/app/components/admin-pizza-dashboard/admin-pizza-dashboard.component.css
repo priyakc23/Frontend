@@ -1,0 +1,13 @@
+/* src/app/components/admin-pizza-dashboard/admin-pizza-dashboard.component.css */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .btn-danger {
+    width: 100%;
+  }
