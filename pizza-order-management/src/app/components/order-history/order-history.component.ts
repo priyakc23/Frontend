@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../../services/order.service';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-order-history',
-  imports: [],
+  standalone:true,
+  imports:[CommonModule,ReactiveFormsModule],
   templateUrl: './order-history.component.html',
-  styleUrl: './order-history.component.css'
+  styleUrls: ['./order-history.component.css']
 })
-export class OrderHistoryComponent {
+export class OrderHistoryComponent implements OnInit {
+  orders: any[] = [];
 
+  constructor(private orderService: OrderService) {}
+
+  ngOnInit() {
+    this.orderService.getOrders(this.orders).subscribe({
+      next: (orders: any[]) => {
+        this.orders = orders;
+      },
+      error: (error: any) => console.error('Error fetching orders:', error)
+    });
+  }
 }

@@ -1,1 +1,24 @@
-<p>order-history works!</p>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Order History 📦</h2>
+
+  <div *ngIf="orders.length === 0" class="alert alert-info text-center">
+    No past orders found.
+  </div>
+
+  <div *ngIf="orders.length > 0">
+    <div class="card mb-3" *ngFor="let order of orders">
+      <div class="card-body">
+        <h5 class="card-title">Order #{{ order.id }}</h5>
+        <p class="card-text">Customer: {{ order.customerName }}</p>
+        <p class="card-text">Total: ${{ order.total }}</p>
+        <p class="card-text">Status: <span class="badge bg-warning">{{ order.status }}</span></p>
+
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of order.items">
+            {{ item.name }} (x{{ item.quantity }}) - ${{ item.price * item.quantity }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

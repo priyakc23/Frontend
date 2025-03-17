@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PizzaService {
-  private apiUrl = 'http://localhost:8080/api/pizzas'; // Update with your backend URL
+  private apiUrl = 'http://localhost:8088/admin/pizzas'; // Update with your backend URL
 
   constructor(private http: HttpClient) {}
 

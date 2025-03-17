@@ -1,0 +1,47 @@
+.payment-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f4f4f4;
+  }
+  
+  .payment-card {
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: white;
+  }
+  
+  .payment-card.failure {
+    border: 2px solid #dc3545;
+  }
+  
+  img {
+    width: 100px;
+  }
+  
+  h2 {
+    color: #dc3545;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  button {
+    background: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  button:hover {
+    background: #a71d2a;
+  }
+  

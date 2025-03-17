@@ -1,5 +1,3 @@
-<h1>Login Page Loaded</h1>
-
 <div class="container">
     <h2>Login</h2>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -22,7 +20,7 @@
       <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
       <!-- <button (click)="navigateToRegister()" class="btn btn-link">Register</button> -->
 
-      <p>Don't have an account? <a routerLink="/register" class="text-primary">Register</a></p>
+      <p>Don't have an account? <a routerLink="/registration" class="text-primary">Register</a></p>
 
     </form>
   </div>

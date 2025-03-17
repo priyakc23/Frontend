@@ -12,6 +12,15 @@
   }
   * {
     display: block !important;
-    color: black !important;
+    color: rgb(0, 0, 0) !important;
+  }
+  .text-primary {
+    font-weight: 500;
+    text-decoration: none;
+    color: blue;
+  }
+  
+  .text-primary:hover {
+    text-decoration: underline;
   }
   

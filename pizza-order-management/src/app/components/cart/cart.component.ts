@@ -2,17 +2,18 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart.service';
-import { CommonModule, DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { CommonModule, DecimalPipe, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
 
 
 @Component({
   selector: 'app-cart',
   standalone:true,
-  imports:[CommonModule,RouterModule,NgFor,NgIf,DecimalPipe],
+  imports:[CommonModule,RouterModule,NgFor,NgIf,DecimalPipe,NgOptimizedImage],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent {
+
   cartItems: any[] = [];
   totalPrice: number = 0;
 

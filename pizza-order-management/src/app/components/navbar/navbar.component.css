@@ -1,4 +1,22 @@
 .navbar-brand {
     font-size: 1.5rem;
   }
-  
+ 
+  .menu-link {
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .menu-link:hover {
+    color: #d32f2f !important; /* Red color on hover */
+    background-color: transparent; /* No background change */
+  }
+
+
+  .menu-link:hover {
+    color: #d32f2f !important;
+     /* Red Hover Effect */
+     background-color: transparent;
+    transform: scale(1.1); /* Slight Zoom Effect */
+  }  
