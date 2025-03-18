@@ -6,20 +6,18 @@ import { PaymentService } from '../../services/payment.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-checkout',
-  standalone:true,
-  imports:[CommonModule,FormsModule,ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-  
   cartItems: any[] = [];
- totalPrice = 0;
-  customerName: string = ''; 
-  address: string = '';     
+  totalPrice = 0;
+  customerName: string = '';
+  address: string = '';
 
   constructor(
     private cartService: CartService,
@@ -33,10 +31,13 @@ export class CheckoutComponent {
 
   placeOrder() {
     const order = {
+      customerName: this.customerName,
+      address: this.address,
       items: this.cartItems,
       total: this.totalPrice,
       status: 'Pending'
     };
+
     this.orderService.placeOrder(order).subscribe({
       next: () => {
         console.log('✅ Order placed successfully!');
@@ -48,4 +49,5 @@ export class CheckoutComponent {
         this.router.navigate(['/payment-failure']); // Redirect to failure page
       }
     });
-  }}
+  }
+}

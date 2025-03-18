@@ -1,72 +1,96 @@
-<!-- src/app/components/cart/cart.component.html -->
 <div class="container mt-5">
-    <h2 class="text-center mb-4" style="color: aliceblue;">Your Cart 🛒</h2>
-  
-    <!-- Empty Cart Message -->
-    <div *ngIf="cartItems.length === 0" class="alert alert-warning text-center">
-      Your cart is empty. <a routerLink="/menu" class="alert-link">Start shopping!</a>
-    </div>
-  
-    <!-- Cart Items -->
-    <div *ngIf="cartItems.length > 0">
-      <div class="row">
-        <div class="col-md-8">
-          <!-- Cart Items List -->
-          <div class="card mb-3" *ngFor="let item of cartItems; let i = index">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h5 class="card-title">{{ item.name }}</h5>
-                  <p class="card-text">${{ item.price }} per item</p>
-                </div>
-                <div class="d-flex align-items-center">
-                  <!-- Quantity Controls -->
-                  <button class="btn btn-outline-secondary btn-sm" (click)="updateQuantity(i, -1)">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <span class="mx-2">{{ item.quantity }}</span>
-                  <button class="btn btn-outline-secondary btn-sm" (click)="updateQuantity(i, 1)">
-                    <i class="fas fa-plus"></i>
-                  </button>
-                </div>
-                <div>
-                  <p class="card-text">${{ item.price * item.quantity }}</p>
-                </div>
-                <div>
-                  <button class="btn btn-danger btn-sm" (click)="updateQuantity(i, -item.quantity)">
-                    <i class="fas fa-trash"></i> Remove
-                  </button>
-                </div>
+  <h2 class="text-center mb-4">Your Cart 🛒</h2>
+
+  <!-- Empty Cart Message -->
+  <div *ngIf="cartItems.length === 0" class="empty-cart-message">
+    <mat-card>
+      <mat-card-content>
+        <p class="text-center">Your cart is empty. <a routerLink="/menu" class="alert-link">Start shopping!</a></p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Cart Items -->
+  <div *ngIf="cartItems.length > 0">
+    <div class="row">
+      <div class="col-md-8">
+        <!-- Cart Items List -->
+        <mat-card *ngFor="let item of cartItems; let i = index" class="mb-3">
+          <mat-card-content>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">${{ item.price }} per item</p>
+              </div>
+              <div class="d-flex align-items-center">
+                <!-- Quantity Controls -->
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="updateQuantity(i, -1)"
+                  matTooltip="Decrease Quantity"
+                >
+                  <mat-icon>remove</mat-icon>
+                </button>
+                <span class="mx-2">{{ item.quantity }}</span>
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="updateQuantity(i, 1)"
+                  matTooltip="Increase Quantity"
+                >
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <div>
+                <p class="card-text">${{ item.price * item.quantity }}</p>
+              </div>
+              <div>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="updateQuantity(i, -item.quantity)"
+                  matTooltip="Remove Item"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
               </div>
             </div>
-          </div>
-        </div>
-  
-        <!-- Order Summary -->
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Order Summary</h5>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between">
-                  <span>Subtotal</span>
-                  <span>${{ totalPrice }}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between">
-                  <span>Tax (10%)</span>
-                  <span>${{ totalPrice * 0.1 | number: '1.2-2' }}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between fw-bold">
-                  <span>Total</span>
-                  <span>${{ totalPrice * 1.1 | number: '1.2-2' }}</span>
-                </li>
-              </ul>
-              <button class="btn btn-success w-100 mt-3" (click)="checkout()">
-                <i class="fas fa-credit-card"></i> Proceed to Checkout
-              </button>
-            </div>
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="col-md-4">
+        <mat-card>
+          <mat-card-content>
+            <h5 class="card-title">Order Summary</h5>
+            <mat-divider></mat-divider> <!-- Use mat-divider here -->
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Subtotal</span>
+                <span>${{ totalPrice }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Tax (10%)</span>
+                <span>${{ totalPrice * 0.1 | number: '1.2-2' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between fw-bold">
+                <span>Total</span>
+                <span>${{ totalPrice * 1.1 | number: '1.2-2' }}</span>
+              </li>
+            </ul>
+            <button
+              mat-raised-button
+              color="primary"
+              class="w-100 mt-3"
+              (click)="checkout()"
+            >
+              <mat-icon>shopping_cart_checkout</mat-icon> Proceed to Checkout
+            </button>
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
   </div>
+</div>

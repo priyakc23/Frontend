@@ -16,4 +16,6 @@ export class NavbarComponent {
   navigateTo(path: string) {
     this.router.navigate([path]);
   }
+  
+  
 }
