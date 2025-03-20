@@ -14,12 +14,11 @@ import { OrderService } from '../../services/order.service';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent implements OnInit {
-  
+export class CheckoutComponent {
   cartItems: any[] = [];
   totalPrice = 0;
-  customerName: string = ''; 
-  address: string = '';     
+  customerName: string = '';
+  address: string = '';
 
   constructor(
     private cartService: CartService,
@@ -36,10 +35,13 @@ export class CheckoutComponent implements OnInit {
 
   placeOrder() {
     const order = {
+      customerName: this.customerName,
+      address: this.address,
       items: this.cartItems,
       total: this.totalPrice,
       status: 'Pending'
     };
+
     this.orderService.placeOrder(order).subscribe({
       next: () => {
         console.log('✅ Order placed successfully!');

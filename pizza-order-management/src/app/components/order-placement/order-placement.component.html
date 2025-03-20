@@ -1,0 +1,18 @@
+<div class="order-container">
+    <h2>Your Cart</h2>
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <img [src]="item.image" alt="{{ item.name }}">
+        <div>
+          <h4>{{ item.name }}</h4>
+          <p>Quantity: {{ item.quantity }}</p>
+          <p>Price: ₹{{ item.price * item.quantity }}</p>
+        </div>
+      </div>
+      <h3>Total: ₹{{ totalPrice }}</h3>
+      <button class="order-btn" (click)="placeOrder()">Place Order</button>
+    </div>
+    <ng-template #emptyCart>
+      <p>Your cart is empty.</p>
+    </ng-template>
+  </div>

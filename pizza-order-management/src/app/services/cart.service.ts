@@ -1,19 +1,19 @@
-
-// src/app/services/cart.service.ts
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  getTotalPrice(): number {
-    throw new Error('Method not implemented.');
-  }
   private cartItems: any[] = [];
+  private apiUrl = 'http://localhost:8080/api/cart'; // Update with your backend URL
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  // Add item to cart
   addToCart(item: any) {
-    let existingItem = this.cartItems.find(cartItem => cartItem.id === item.id);
+    let existingItem = this.cartItems.find((cartItem) => cartItem.id === item.id);
     if (existingItem) {
       existingItem.quantity += item.quantity;
     } else {
@@ -21,8 +21,7 @@ export class CartService {
     }
   }
 
-
-  // Get all items in the cart
+  // Get all cart items
   getCartItems(): any[] {
     return this.cartItems;
   }
@@ -30,5 +29,19 @@ export class CartService {
   // Clear the cart
   clearCart(): void {
     this.cartItems = [];
+  }
+
+  // Calculate the total price of the cart
+  getTotalPrice(): number {
+    return this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  }
+
+  // Send cart data to the backend
+  sendCartToBackend(): Observable<any> {
+    const payload = {
+      items: this.cartItems,
+      total: this.getTotalPrice(), // Use getTotalPrice() here
+    };
+    return this.http.post(`${this.apiUrl}/checkout`, payload);
   }
 }

@@ -1,4 +1,3 @@
-<!-- src/app/components/menu/menu.component.html -->
 <div class="container mt-4">
   <h2 class="text-center">Pizza Menu</h2>
   
@@ -36,6 +35,23 @@
           <h5 class="card-title">{{ pizza.name }}</h5>
           <p class="card-text">{{ pizza.category }} | {{ pizza.size }}</p>
           <p class="fw-bold">₹{{ pizza.price }}</p>
+
+          <!-- Toppings Section -->
+          <div class="toppings-section">
+            <h6>Add Toppings:</h6>
+            <div *ngFor="let topping of toppings" class="topping-item">
+              <label>
+                <input
+                  type="checkbox"
+                  [value]="topping.id"
+                  (change)="onToppingChange(pizza.id, topping.id, $event)"
+                />
+                {{ topping.name }} (+₹{{ topping.price }})
+              </label>
+            </div>
+          </div>
+
+          <!-- Add to Cart Button -->
           <button class="btn btn-primary" (click)="addToCart(pizza)">Add to Cart</button>
         </div>
       </div>
