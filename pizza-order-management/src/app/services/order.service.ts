@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService {
+  static getOrders(orders: any, arg1: any) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:8088/api/orders';  // Ensure backend URL is correct
 
   constructor(private http: HttpClient) {}

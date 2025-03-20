@@ -10,6 +10,7 @@ import { OrderHistoryComponent } from "./components/order-history/order-history.
 import { AdminOrdersComponent } from "./components/admin-orders/admin-orders.component";
 import { PaymentFailureComponent } from "./components/payment-failure/payment-failure.component";
 import { PaymentSuccessComponent } from "./components/payment-success/payment-success.component";
+import { OrderComponent } from "./components/order/order.component";
 
 
   export const routes: Routes = [
@@ -22,7 +23,8 @@ import { PaymentSuccessComponent } from "./components/payment-success/payment-su
     { path: 'order-history', component: OrderHistoryComponent },
     { path: 'payment-success', component: PaymentSuccessComponent },
     { path: 'payment-failure', component: PaymentFailureComponent },
-    { path: 'admin/pizzas', component: AdminPizzaDashboardComponent },
-    { path: 'admin/orders', component: AdminOrdersComponent },
+    { path: 'admin-pizza-dashboard', component: AdminPizzaDashboardComponent },
+    // { path: 'admin/order', component: AdminOrdersComponent },
+    {path:'order',component:OrderComponent}
   ];
   

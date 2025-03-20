@@ -34,6 +34,11 @@
       </select>
     </div>
     
+    <div *ngIf="pizzas.length === 0" class="no-pizzas-message">
+      No pizzas available
+    </div>
+    
+
     <!-- Pizza List -->
     <div class="row">
       <div class="col-md-4" *ngFor="let pizza of filteredPizzas">

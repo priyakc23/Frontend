@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../../services/order.service';
+
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-order-history',
